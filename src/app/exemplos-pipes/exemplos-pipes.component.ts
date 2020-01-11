@@ -16,8 +16,27 @@ export class ExemplosPipesComponent implements OnInit {
     url: 'http://a.co/glqjRP'
   };
 
-  
+  filtro: string;
 
+  livros: string[] = ['Angular 2', 'O sapo e a rosa', 'As formigas atômicas', 'O escudeiro fiel'];
+
+  addCurso(valor: string) {
+    this.livros.push(valor);
+  }
+
+
+  obterLivros() {
+    if(this.livros.length === 0 || this.filtro === undefined || this.filtro.trim() === ''){
+      return this.livros;
+    }
+
+    return this.livros.filter((v: any) => {
+      if(v.toLocaleLowerCase().indexOf(this.filtro.toLocaleLowerCase()) >= 0){
+        return true;
+      }
+      return false;
+    })
+  }
   constructor() { }
 
   ngOnInit() {
